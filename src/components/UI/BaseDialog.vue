@@ -1,4 +1,5 @@
 <template>
+  <!-- Binds the content to the css selector provided -->
   <teleport to="body">
     <div @click="$emit('close')"></div>
     <dialog open>

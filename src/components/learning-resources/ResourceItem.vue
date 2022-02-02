@@ -29,6 +29,8 @@ export default {
       type: Object
     }
   },
+
+  // Injects variables provided by some ancestor.
   inject: ['removeResource']
 }
 </script>

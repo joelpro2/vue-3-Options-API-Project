@@ -1,7 +1,10 @@
 <template>
+  <!-- Vue 3 uses Partials, so a root element is not needed anymore -->
+  <!-- Binds the content to the css selector provided -->
   <teleport to="#header" v-if="selectedTab === enumTab.ADD">
     <the-header title="Add Resource"></the-header>
   </teleport>
+
   <base-dialog v-if="isInvalid" title="Invalid Input" @close="closeDialog">
     <template #default>
       <p>All fields are required</p>
@@ -10,6 +13,7 @@
       <base-button @click="closeDialog">OK</base-button>
     </template>
   </base-dialog>
+
   <base-card>
     <form @submit.prevent="submit">
       <div class="form-control">
@@ -46,9 +50,6 @@ export default {
     BaseButton,
     BaseDialog
   },
-  props: {
-    selectedTab: String
-  },
 
   data() {
     return {
@@ -58,7 +59,8 @@ export default {
     }
   },
 
-  inject: ['addResource'],
+  // Injects variables provided by some ancestor.
+  inject: ['selectedTab', 'addResource'],
 
   methods: {
     submit() {

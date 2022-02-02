@@ -1,7 +1,10 @@
 <template>
+  <!-- Vue 3 uses Partials, so a root element is not needed anymore -->
+  <!-- Binds the content to the css selector provided -->
   <teleport to="#header" v-if="selectedTab === enumTab.LIST">
     <the-header v-if="activeResource" :title="activeResource.title"></the-header>
   </teleport>
+
   <ul>
     <resource-item v-for="resource in storedResources" :key="resource.id" :resource="resource"
                    @click="setActiveResource(resource)"
@@ -20,19 +23,17 @@ export default {
     ResourceItem,
     TheHeader
   },
-  props: {
-    selectedTab: String
-  },
+
   data() {
     return {
-      activeResource: null,
+      activeResource: this.storedResources[0],
       enumTab: RESOURCE_TAB
     }
   },
-  inject: ['storedResources'],
-  mounted() {
-    this.setActiveResource(this.storedResources[0])
-  },
+
+  // Injects variables provided by some ancestor.
+  inject: ['selectedTab', 'storedResources'],
+
   methods: {
     setActiveResource(activeResource) {
       this.activeResource = activeResource

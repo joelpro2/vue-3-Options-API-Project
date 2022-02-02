@@ -1,4 +1,5 @@
 <template>
+  <!-- Vue 3 uses Partials, so a root element is not needed anymore -->
   <div id="header"></div>
   <the-resources></the-resources>
 </template>
